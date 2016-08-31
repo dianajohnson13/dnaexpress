@@ -52,7 +52,7 @@ angular.module('app.auth', ['app.services', 'app.eventfactory'])
 
     }
     else {
-      alert("Please use only letters and numbers. Emails should contain an '@' and a '.'");
+      alert("Please use only letters and numbers in username, name, and password fields. Emails should contain an '@' and a '.'");
     }
   };
 
@@ -61,12 +61,11 @@ angular.module('app.auth', ['app.services', 'app.eventfactory'])
     var isValid = true;
     for(var field in data) {
       var string = data[field];
-      if (field === "email") {
-        continue;
-      }
-      var n = data[field].search(/\W/g);
-      if (n > -1) {
-        isValid = false;
+      if (field !== "email" && field !== "location") {
+        var n = data[field].search(/\W/g);
+        if (n > -1) {
+          isValid = false;
+        }
       }
     }
     return isValid;
